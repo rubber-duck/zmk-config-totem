@@ -52,7 +52,7 @@ label= "COLEMAK PC"                        ;
                 &kp Q         &kp W         &kp F         &kp P         &kp B                  &kp J       &kp L         &kp U         &kp Y         &kp SQT
                 &mt LGUI A    &mt LALT R    &mt LCTRL S   &mt LSHFT T   &kp G                  &kp M       &mt RSHFT N   &mt RCTRL E   &mt RALT I    &mt RGUI O
     &kp LSHFT   &kp Z         &kp X         &kp C         &kp D         &kp V                  &kp K       &kp H         &kp COMMA     &kp DOT       &kp FSLH      &mo BLUETOOTH
-                                          &lt SYMBOLS_PC ESC  &lt BRACKETS_PC SPACE  &lt NAVIGATION_PC TAB     &lt NUMBERS RET  &lt SHORTCUTS_PC BSPC  &lt FUNCTION DEL
+                 &lt SHORTCUTS_PC ESC  &lt BRACKETS_PC SPACE  &lt NAVIGATION_PC TAB     &lt NUMBERS RET  &lt SYMBOLS_PC BSPC  &lt FUNCTION DEL
                         >;
                 };
 
@@ -64,7 +64,7 @@ label= "COLEMAK MAC"                       ;
                 &kp Q         &kp W         &kp F         &kp P         &kp B                  &kp J       &kp L         &kp U         &kp Y         &kp SQT
                 &mt LGUI A    &mt LALT R    &mt LCTRL S   &mt LSHFT T   &kp G                  &kp M       &mt RSHFT N   &mt RCTRL E   &mt RALT I    &mt RGUI O
     &kp LSHFT   &kp Z         &kp X         &kp C         &kp D         &kp V                  &kp K       &kp H         &kp COMMA     &kp DOT       &kp FSLH      &mo BLUETOOTH
-                                          &lt SYMBOLS_MAC ESC  &lt BRACKETS_MAC SPACE  &lt NAVIGATION_MAC TAB     &lt NUMBERS RET  &lt SHORTCUTS_MAC BSPC  &lt FUNCTION DEL
+               &lt SHORTCUTS_MAC ESC  &lt BRACKETS_MAC SPACE  &lt NAVIGATION_MAC TAB     &lt NUMBERS RET  &lt SYMBOLS_MAC BSPC  &lt FUNCTION DEL
                         >;
                 };
 
@@ -75,8 +75,8 @@ label= "QWERTY GAMING"                     ;
  bindings = <
                 &kp Q         &kp W         &kp E         &kp R         &kp T                  &kp Y       &kp U         &kp I         &kp O         &kp P
                 &kp A         &kp S         &kp D         &kp F         &kp G                  &kp H       &kp J         &kp K         &kp L         &kp SEMI
-    &kp LSHFT   &kp Z         &kp X         &kp C         &kp V         &kp B                  &kp N       &kp M         &kp COMMA     &kp DOT       &kp FSLH      &mo BLUETOOTH
-                                          &lt SYMBOLS_PC ESC  &lt BRACKETS_PC SPACE  &lt NAVIGATION_PC TAB     &lt NUMBERS RET  &lt SHORTCUTS_PC BSPC  &lt FUNCTION DEL
+    &kp LGUI    &kp Z         &kp X         &kp C         &kp V         &kp B                  &kp N       &kp M         &kp COMMA     &kp DOT       &kp FSLH      &mo BLUETOOTH
+                                                        &kp ESC  &kp SPACE  &kp TAB     &kp RET  &kp BSPC  &kp DEL
                         >;
                 };
 
@@ -160,7 +160,7 @@ label= "NUMBERS"                           ;
                 &kp LS(N8)    &kp N7        &kp N8        &kp N9        &kp LS(EQUAL)          &kp LS(EQUAL)  &kp N7        &kp N8        &kp N9        &kp LS(N8)
                 &kp FSLH      &kp N4        &kp N5        &kp N6        &kp MINUS              &kp MINUS      &kp N4        &kp N5        &kp N6        &kp FSLH
     &trans      &kp N0        &kp N1        &kp N2        &kp N3        &kp EQUAL              &kp EQUAL      &kp N1        &kp N2        &kp N3        &kp N0     &trans
-                                          &kp COMMA     &kp DOT       &kp RET                &none       &kp DOT       &kp COMMA
+                                                 &kp COMMA     &kp DOT       &kp RET        &none       &kp DOT       &kp COMMA
                         >;
                 };
 
@@ -172,7 +172,7 @@ label= "SHORTCUTS PC"                      ;
                 &trans        &trans        &trans        &trans        &trans                 &kp LC(LA(I)) &kp LC(MINUS) &kp LC(EQUAL) &kp LC(F4)   &kp LC(LS(F))
                 &trans        &trans        &trans        &trans        &trans                 &kp LC(LS(FSLH)) &kp LC(F) &kp LC(LS(O)) &kp LS(LA(F)) &kp LG(LS(S))
     &trans      &trans        &trans        &trans        &trans        &trans                 &kp LC(H)   &kp LC(LS(H)) &kp LC(LS(TAB)) &kp LC(TAB)  &trans        &trans
-                                          &trans        &trans        &trans                 &trans      &trans        &trans
+                                               &trans        &trans        &trans          &trans      &trans        &trans
                         >;
                 };
 
@@ -184,7 +184,7 @@ label= "SHORTCUTS MAC"                     ;
                 &trans        &trans        &trans        &trans        &trans                 &kp LG(LA(I)) &kp LG(MINUS) &kp LG(EQUAL) &kp LG(W)    &kp LG(LS(F))
                 &trans        &trans        &trans        &trans        &trans                 &kp LG(LS(FSLH)) &kp LG(F) &kp LG(LS(O)) &kp LG(LS(LA(F))) &kp LG(LS(N4))
     &trans      &trans        &trans        &trans        &trans        &trans                 &kp LG(LA(F)) &kp LG(LS(H)) &kp LC(LS(TAB)) &kp LC(TAB)  &trans        &trans
-                                          &trans        &trans        &trans                 &trans      &trans        &trans
+                                               &trans        &trans        &trans          &trans      &trans        &trans
                         >;
                 };
 
@@ -193,10 +193,10 @@ label= "SHORTCUTS MAC"                     ;
                 function_layer {
 label= "FUNCTION"                          ;
  bindings = <
-                &none         &kp F9        &kp F10       &kp F11       &kp F12                &kp F9      &kp F10       &kp F11       &kp F12       &to COLEMAK_PC
-                &none         &kp F5        &kp F6        &kp F7        &kp F8                 &kp F5      &kp F6        &kp F7        &kp F8        &to COLEMAK_MAC
-    &trans      &none         &kp F1        &kp F2        &kp F3        &kp F4                 &kp F1      &kp F2        &kp F3        &kp F4        &to QWERTY_GAMING &trans
-                                          &none         &none         &none                  &none       &none         &none
+                &none         &kp F9        &kp F10       &kp F11       &kp F12                  &kp F9      &kp F10       &kp F11       &kp F12       &to COLEMAK_PC
+                &none         &kp F5        &kp F6        &kp F7        &kp F8                   &kp F5      &kp F6        &kp F7        &kp F8        &to COLEMAK_MAC
+    &trans      &none         &kp F1        &kp F2        &kp F3        &kp F4                   &kp F1      &kp F2        &kp F3        &kp F4        &to QWERTY_GAMING         &trans
+                                                   &none         &none         &none         &none       &none         &none
                         >;
                 };
 
@@ -205,10 +205,10 @@ label= "FUNCTION"                          ;
                 bluetooth_layer {
 label= "BLUETOOTH"                         ;
  bindings = <
-                &trans        &trans        &trans        &trans        &trans                 &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4
-                &trans        &trans        &trans        &trans        &trans                 &trans      &trans        &trans        &trans        &trans
-    &trans      &trans        &trans        &trans        &trans        &trans                 &bt BT_CLR  &out OUT_TOG  &sys_reset    &bootloader   &trans        &trans
-                                          &trans        &trans        &trans                 &trans      &trans        &trans
+                &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4             &trans      &trans        &trans        &trans        &to COLEMAK_PC
+                &trans        &trans        &trans        &trans        &trans                   &trans      &trans        &trans        &trans        &to COLEMAK_MAC
+    &trans      &bt BT_CLR    &out OUT_TOG  &sys_reset    &bootloader   &trans                   &trans      &trans        &trans        &trans        &to QWERTY_GAMING       &trans
+                                                   &trans        &trans        &trans        &trans      &trans        &trans
                         >;
                 };
         };
