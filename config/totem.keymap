@@ -109,9 +109,9 @@ label= "SYMBOLS MAC"                       ;
                 brackets_pc_layer {
 label= "BRACKETS PC"                       ;
  bindings = <
-                &kp LS(N9)    &kp LS(N0)    &kp LS(COMMA) &kp LS(DOT)   &kp LS(SEMI)           &kp LS(SEMI) &kp LS(COMMA) &kp LS(DOT)  &kp LS(N9)    &kp LS(N0)
-                &kp LS(LBKT)  &kp LS(RBKT)  &kp LBKT      &kp RBKT      &kp SEMI               &kp SEMI    &kp LS(LBKT)  &kp LS(RBKT)  &kp LBKT      &kp RBKT
-    &trans      &kp GRAVE     &kp SQT       &kp LS(SQT)   &kp LS(N1)    &kp EQUAL              &kp EQUAL   &kp LS(N1)    &kp LS(SQT)   &kp SQT       &kp GRAVE     &trans
+                &kp LBKT      &kp RBKT      &kp LS(COMMA) &kp LS(DOT)   &kp LS(SEMI)           &kp LS(SEMI) &kp LS(COMMA)  &kp LS(DOT)   &kp LBKT      &kp RBKT      
+                &kp LS(LBKT)  &kp LS(RBKT)  &kp LS(N9)    &kp LS(N0)    &kp SEMI               &kp SEMI     &kp LS(N9)     &kp LS(N0)    &kp LS(LBKT)  &kp LS(RBKT)
+    &trans      &kp GRAVE     &kp SQT       &kp LS(SQT)   &kp LS(N1)    &kp EQUAL              &kp EQUAL    &kp LS(N1)     &kp LS(SQT)   &kp SQT       &kp GRAVE     &trans
                                           &none         &none         &none                  &none       &kp BSPC      &kp DEL
                         >;
                 };
@@ -121,9 +121,9 @@ label= "BRACKETS PC"                       ;
                 brackets_mac_layer {
 label= "BRACKETS MAC"                      ;
  bindings = <
-                &kp LS(N9)    &kp LS(N0)    &kp LS(COMMA) &kp LS(DOT)   &kp LS(SEMI)           &kp LS(SEMI) &kp LS(COMMA) &kp LS(DOT)  &kp LS(N9)    &kp LS(N0)
-                &kp LS(LBKT)  &kp LS(RBKT)  &kp LBKT      &kp RBKT      &kp SEMI               &kp SEMI    &kp LS(LBKT)  &kp LS(RBKT)  &kp LBKT      &kp RBKT
-    &trans      &kp GRAVE     &kp SQT       &kp LS(SQT)   &kp LS(N1)    &kp EQUAL              &kp EQUAL   &kp LS(N1)    &kp LS(SQT)   &kp SQT       &kp GRAVE     &trans
+                &kp LBKT      &kp RBKT      &kp LS(COMMA) &kp LS(DOT)   &kp LS(SEMI)           &kp LS(SEMI) &kp LS(COMMA) &kp LS(DOT)  &kp RBKT    &kp LS(LBKT)  
+                &kp LS(LBKT)  &kp LS(RBKT)  &kp LS(N9)    &kp LS(N0)    &kp SEMI               &kp SEMI     &kp LS(N9)    &kp LS(N0)   &kp LBKT    &kp LS(RBKT)
+    &trans      &kp GRAVE     &kp SQT       &kp LS(SQT)   &kp LS(N1)    &kp EQUAL              &kp EQUAL    &kp LS(N1)    &kp LS(SQT)  &kp SQT     &kp GRAVE     &trans
                                           &none         &none         &none                  &none       &kp BSPC      &kp DEL
                         >;
                 };
