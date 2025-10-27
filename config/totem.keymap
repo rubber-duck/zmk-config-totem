@@ -136,8 +136,8 @@ label= "BRACKETS PC"                       ;
                 brackets_mac_layer {
 label= "BRACKETS MAC"                      ;
  bindings = <
-                &kp LBKT      &kp RBKT      &kp LS(COMMA) &kp LS(DOT)   &kp LS(SEMI)           &kp LS(SEMI) &kp LS(COMMA) &kp LS(DOT)  &kp RBKT     &kp LBKT  
-                &kp LS(LBKT)  &kp LS(RBKT)  &kp LS(N9)    &kp LS(N0)    &kp SEMI               &kp SEMI     &kp LS(N9)    &kp LS(N0)   &kp LS(RBKT) &kp LS(LBKT)
+                &kp LBKT      &kp RBKT      &kp LS(COMMA) &kp LS(DOT)   &kp LS(SEMI)           &kp LS(SEMI) &kp LS(COMMA) &kp LS(DOT)  &kp LBKT     &kp RBKT
+                &kp LS(LBKT)  &kp LS(RBKT)  &kp LS(N9)    &kp LS(N0)    &kp SEMI               &kp SEMI     &kp LS(N9)    &kp LS(N0)   &kp LS(LBKT) &kp LS(RBKT)
     &trans      &kp GRAVE     &kp SQT       &kp LS(SQT)   &kp LS(N1)    &kp EQUAL              &kp EQUAL    &kp LS(N1)    &kp LS(SQT)  &kp SQT      &kp GRAVE     &trans
                                           &none         &none         &none                  &none       &kp BSPC      &kp DEL
                         >;
