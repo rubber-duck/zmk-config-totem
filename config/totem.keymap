@@ -39,6 +39,21 @@
 };
 
 / {
+        macros {
+                // BT 0 is PC layout
+                bt0_pc: bt0_pc {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings = <&bt BT_SEL 0>, <&to COLEMAK_PC>;
+                };
+                
+                // BT 1 is Mac layout 
+                bt1_mac: bt1_mac {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings = <&bt BT_SEL 1>, <&to COLEMAK_MAC>;
+                };
+        };
 
         keymap {
                 compatible = "zmk,keymap";
@@ -121,9 +136,9 @@ label= "BRACKETS PC"                       ;
                 brackets_mac_layer {
 label= "BRACKETS MAC"                      ;
  bindings = <
-                &kp LBKT      &kp RBKT      &kp LS(COMMA) &kp LS(DOT)   &kp LS(SEMI)           &kp LS(SEMI) &kp LS(COMMA) &kp LS(DOT)  &kp RBKT    &kp LS(LBKT)  
-                &kp LS(LBKT)  &kp LS(RBKT)  &kp LS(N9)    &kp LS(N0)    &kp SEMI               &kp SEMI     &kp LS(N9)    &kp LS(N0)   &kp LBKT    &kp LS(RBKT)
-    &trans      &kp GRAVE     &kp SQT       &kp LS(SQT)   &kp LS(N1)    &kp EQUAL              &kp EQUAL    &kp LS(N1)    &kp LS(SQT)  &kp SQT     &kp GRAVE     &trans
+                &kp LBKT      &kp RBKT      &kp LS(COMMA) &kp LS(DOT)   &kp LS(SEMI)           &kp LS(SEMI) &kp LS(COMMA) &kp LS(DOT)  &kp RBKT     &kp LBKT  
+                &kp LS(LBKT)  &kp LS(RBKT)  &kp LS(N9)    &kp LS(N0)    &kp SEMI               &kp SEMI     &kp LS(N9)    &kp LS(N0)   &kp LS(RBKT) &kp LS(LBKT)
+    &trans      &kp GRAVE     &kp SQT       &kp LS(SQT)   &kp LS(N1)    &kp EQUAL              &kp EQUAL    &kp LS(N1)    &kp LS(SQT)  &kp SQT      &kp GRAVE     &trans
                                           &none         &none         &none                  &none       &kp BSPC      &kp DEL
                         >;
                 };
@@ -205,7 +220,7 @@ label= "FUNCTION"                          ;
                 bluetooth_layer {
 label= "BLUETOOTH"                         ;
  bindings = <
-                &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4             &trans      &trans        &trans        &trans        &to COLEMAK_PC
+                &bt0_pc       &bt1_mac      &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4             &trans      &trans        &trans        &trans        &to COLEMAK_PC
                 &trans        &trans        &trans        &trans        &trans                   &trans      &trans        &trans        &trans        &to COLEMAK_MAC
     &trans      &bt BT_CLR    &out OUT_TOG  &sys_reset    &bootloader   &trans                   &trans      &trans        &trans        &trans        &to QWERTY_GAMING       &trans
                                                    &trans        &trans        &trans        &trans      &trans        &trans
