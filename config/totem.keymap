@@ -97,7 +97,7 @@ label= "COLEMAK PC"                        ;
                 &kp Q         &kp W         &kp F         &kp P         &kp B                  &kp J       &kp L         &kp U         &kp Y         &kp SQT
                 &mt LGUI A    &mt LALT R    &mt LCTRL S   &mt LSHFT T   &kp G                  &kp M       &mt RSHFT N   &mt RCTRL E   &mt RALT I    &mt RGUI O
     &kp LSHFT   &kp Z         &kp X         &kp C         &kp D         &kp V                  &kp K       &kp H         &kp COMMA     &kp DOT       &kp FSLH      &mo BLUETOOTH
-                 &lt SHORTCUTS_PC ESC  &lt BRACKETS_PC SPACE  &lt NAVIGATION_PC TAB     &lt NUMBERS RET  &lt SYMBOLS_PC BSPC  &lt FUNCTION DEL
+                 &lt SHORTCUTS_PC ESC  &lt BRACKETS SPACE  &lt NAVIGATION_PC TAB     &lt NUMBERS RET  &lt SYMBOLS BSPC  &lt FUNCTION DEL
                         >;
                 };
 
@@ -109,7 +109,7 @@ label= "COLEMAK MAC"                       ;
                 &kp Q         &kp W         &kp F         &kp P         &kp B                  &kp J       &kp L         &kp U         &kp Y         &kp SQT
                 &mt LGUI A    &mt LALT R    &mt LCTRL S   &mt LSHFT T   &kp G                  &kp M       &mt RSHFT N   &mt RCTRL E   &mt RALT I    &mt RGUI O
     &kp LSHFT   &kp Z         &kp X         &kp C         &kp D         &kp V                  &kp K       &kp H         &kp COMMA     &kp DOT       &kp FSLH      &mo BLUETOOTH
-               &lt SHORTCUTS_MAC ESC  &lt BRACKETS_MAC SPACE  &lt NAVIGATION_MAC TAB     &lt NUMBERS RET  &lt SYMBOLS_MAC BSPC  &lt FUNCTION DEL
+               &lt SHORTCUTS_MAC ESC  &lt BRACKETS SPACE  &lt NAVIGATION_MAC TAB     &lt NUMBERS RET  &lt SYMBOLS BSPC  &lt FUNCTION DEL
                         >;
                 };
 
