@@ -19,17 +19,15 @@
 #define COLEMAK_PC 0
 #define COLEMAK_MAC 1
 #define QWERTY_GAMING 2
-#define SYMBOLS_PC 3
-#define SYMBOLS_MAC 4
-#define BRACKETS_PC 5
-#define BRACKETS_MAC 6
-#define NAVIGATION_PC 7
-#define NAVIGATION_MAC 8
-#define NUMBERS 9
-#define SHORTCUTS_PC 10
-#define SHORTCUTS_MAC 11
-#define FUNCTION 12
-#define BLUETOOTH 13
+#define SYMBOLS 3
+#define BRACKETS 4
+#define NUMBERS 5
+#define NAVIGATION_PC 6
+#define NAVIGATION_MAC 7
+#define SHORTCUTS_PC 8
+#define SHORTCUTS_MAC 9
+#define FUNCTION 10
+#define BLUETOOTH 11
 
 &mt {
   quick-tap-ms = <100>;
@@ -53,6 +51,38 @@
                         #binding-cells = <0>;
                         bindings = <&bt BT_SEL 1>, <&to COLEMAK_MAC>;
                 };
+
+                // VSCode Shortcuts - PC
+                find_in_files_pc: find_in_files_pc { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(LS(F))>; };      // Ctrl+Shift+F
+                rename_symbol_pc: rename_symbol_pc { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp F2>; };              // F2
+                zoom_in_pc: zoom_in_pc { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(EQUAL)>; };                   // Ctrl+=
+                zoom_out_pc: zoom_out_pc { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(MINUS)>; };                 // Ctrl+-
+                go_to_file_pc: go_to_file_pc { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(P)>; };                 // Ctrl+P (Quick Open)
+                open_file_pc: open_file_pc { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(O)>; };                   // Ctrl+O
+                find_pc: find_pc { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(F)>; };                              // Ctrl+F
+                find_all_references_pc: find_all_references_pc { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LA(LS(F12))>; }; // Alt+Shift+F12
+                next_editor_pc: next_editor_pc { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(TAB)>; };             // Ctrl+Tab
+                prev_editor_pc: prev_editor_pc { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(LS(TAB))>; };         // Ctrl+Shift+Tab
+                replace_pc: replace_pc { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(H)>; };                        // Ctrl+H (Replace)
+                replace_in_files_pc: replace_in_files_pc { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(LS(H))>; }; // Ctrl+Shift+H
+                close_window_pc: close_window_pc { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(W)>; };             // Ctrl+W (Close Tab)
+                screenshot_pc: screenshot_pc { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LG(LS(S))>; };             // Win+Shift+S
+
+                // VSCode Shortcuts - Mac
+                find_in_files_mac: find_in_files_mac { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LG(LS(F))>; };     // Cmd+Shift+F
+                rename_symbol_mac: rename_symbol_mac { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp F2>; };            // F2
+                zoom_in_mac: zoom_in_mac { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LG(EQUAL)>; };                 // Cmd+=
+                zoom_out_mac: zoom_out_mac { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LG(MINUS)>; };               // Cmd+-
+                go_to_file_mac: go_to_file_mac { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LG(P)>; };               // Cmd+P (Quick Open)
+                open_file_mac: open_file_mac { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LG(O)>; };                 // Cmd+O
+                find_mac: find_mac { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LG(F)>; };                            // Cmd+F
+                find_all_references_mac: find_all_references_mac { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LG(LS(F12))>; }; // Cmd+Shift+F12
+                next_editor_mac: next_editor_mac { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(TAB)>; };           // Ctrl+Tab
+                prev_editor_mac: prev_editor_mac { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(LS(TAB))>; };       // Ctrl+Shift+Tab
+                replace_mac: replace_mac { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LG(LA(F))>; };                 // Cmd+Alt+F (Replace)
+                replace_in_files_mac: replace_in_files_mac { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LG(LS(H))>; }; // Cmd+Shift+H
+                close_window_mac: close_window_mac { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LG(W)>; };           // Cmd+W (Close Tab)
+                screenshot_mac: screenshot_mac { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LG(LS(N4))>; };          // Cmd+Shift+4
         };
 
         keymap {
@@ -97,8 +127,8 @@ label= "QWERTY GAMING"                     ;
 
 // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
-                symbols_pc_layer {
-label= "SYMBOLS PC"                        ;
+                symbols_layer {
+label= "SYMBOLS"                        ;
  bindings = <
                 &kp LS(N2)    &kp LS(N4)    &kp LS(N3)    &kp LS(N5)    &kp LS(N8)             &kp LS(N8)  &kp LS(N5)    &kp LS(N3)    &kp LS(N4)    &kp LS(N2)
                 &kp LS(N7)    &kp LS(BSLH)  &kp LS(N6)    &kp BSLH      &kp FSLH               &kp FSLH    &kp BSLH      &kp LS(N6)    &kp LS(BSLH)  &kp LS(N7)
@@ -107,22 +137,11 @@ label= "SYMBOLS PC"                        ;
                         >;
                 };
 
-// ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-
-                symbols_mac_layer {
-label= "SYMBOLS MAC"                       ;
- bindings = <
-                &kp LS(N2)    &kp LS(N4)    &kp LS(N3)    &kp LS(N5)    &kp LS(N8)             &kp LS(N8)  &kp LS(N5)    &kp LS(N3)    &kp LS(N4)    &kp LS(N2)
-                &kp LS(N7)    &kp LS(BSLH)  &kp LS(N6)    &kp BSLH      &kp FSLH               &kp FSLH    &kp BSLH      &kp LS(N6)    &kp LS(BSLH)  &kp LS(N7)
-    &trans      &kp LS(GRAVE) &kp LS(EQUAL) &kp MINUS     &kp LS(MINUS) &kp LS(FSLH)           &kp LS(FSLH) &kp LS(MINUS) &kp MINUS    &kp LS(EQUAL) &kp LS(GRAVE) &trans
-                                          &none         &none         &none                  &none       &none         &none
-                        >;
-                };
 
 // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
-                brackets_pc_layer {
-label= "BRACKETS PC"                       ;
+                brackets_layer {
+label= "BRACKETS"                       ;
  bindings = <
                 &kp LBKT      &kp RBKT      &kp LS(COMMA) &kp LS(DOT)   &kp LS(SEMI)           &kp LS(SEMI) &kp LS(COMMA)  &kp LS(DOT)   &kp LBKT      &kp RBKT      
                 &kp LS(LBKT)  &kp LS(RBKT)  &kp LS(N9)    &kp LS(N0)    &kp SEMI               &kp SEMI     &kp LS(N9)     &kp LS(N0)    &kp LS(LBKT)  &kp LS(RBKT)
@@ -133,13 +152,13 @@ label= "BRACKETS PC"                       ;
 
 // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
-                brackets_mac_layer {
-label= "BRACKETS MAC"                      ;
+                numbers_layer {
+label= "NUMBERS"                           ;
  bindings = <
-                &kp LBKT      &kp RBKT      &kp LS(COMMA) &kp LS(DOT)   &kp LS(SEMI)           &kp LS(SEMI) &kp LS(COMMA) &kp LS(DOT)  &kp LBKT     &kp RBKT
-                &kp LS(LBKT)  &kp LS(RBKT)  &kp LS(N9)    &kp LS(N0)    &kp SEMI               &kp SEMI     &kp LS(N9)    &kp LS(N0)   &kp LS(LBKT) &kp LS(RBKT)
-    &trans      &kp GRAVE     &kp SQT       &kp LS(SQT)   &kp LS(N1)    &kp EQUAL              &kp EQUAL    &kp LS(N1)    &kp LS(SQT)  &kp SQT      &kp GRAVE     &trans
-                                          &none         &none         &none                  &none       &kp BSPC      &kp DEL
+                &kp LS(N8)    &kp N7        &kp N8        &kp N9        &kp LS(EQUAL)          &kp LS(EQUAL)  &kp N7        &kp N8        &kp N9        &kp LS(N8)
+                &kp FSLH      &kp N4        &kp N5        &kp N6        &kp MINUS              &kp MINUS      &kp N4        &kp N5        &kp N6        &kp FSLH
+    &trans      &kp N0        &kp N1        &kp N2        &kp N3        &kp EQUAL              &kp EQUAL      &kp N1        &kp N2        &kp N3        &kp N0     &trans
+                                                 &kp COMMA     &kp DOT       &kp RET        &none       &kp DOT       &kp COMMA
                         >;
                 };
 
@@ -162,20 +181,8 @@ label= "NAVIGATION MAC"                    ;
  bindings = <
                 &kp LG(Z)     &kp LG(X)     &kp LG(C)     &kp LG(V)     &kp LG(Y)              &kp LG(Y)   &kp LG(V)     &kp LG(C)     &kp LG(X)     &kp LG(Z)
                 &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT     &kp LG(P)              &kp LG(P)   &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT
-    &trans      &kp LC(G)     &kp LC(MINUS) &kp LC(LS(MINUS)) &kp LG(LS(O)) &kp LG(LS(P))      &kp LG(LS(P)) &kp LG(LS(O)) &kp LC(LS(MINUS)) &kp LC(MINUS) &kp LC(G) &trans
+    &trans      &kp LG(G)     &kp LG(MINUS) &kp LG(LS(MINUS)) &kp LG(LS(O)) &kp LG(LS(P))      &kp LG(LS(P)) &kp LG(LS(O)) &kp LG(LS(MINUS)) &kp LG(MINUS) &kp LG(G) &trans
                                           &kp LG(A)     &kp LG(S)     &none                  &none       &kp BSPC      &kp DEL
-                        >;
-                };
-
-// ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-
-                numbers_layer {
-label= "NUMBERS"                           ;
- bindings = <
-                &kp LS(N8)    &kp N7        &kp N8        &kp N9        &kp LS(EQUAL)          &kp LS(EQUAL)  &kp N7        &kp N8        &kp N9        &kp LS(N8)
-                &kp FSLH      &kp N4        &kp N5        &kp N6        &kp MINUS              &kp MINUS      &kp N4        &kp N5        &kp N6        &kp FSLH
-    &trans      &kp N0        &kp N1        &kp N2        &kp N3        &kp EQUAL              &kp EQUAL      &kp N1        &kp N2        &kp N3        &kp N0     &trans
-                                                 &kp COMMA     &kp DOT       &kp RET        &none       &kp DOT       &kp COMMA
                         >;
                 };
 
@@ -184,10 +191,10 @@ label= "NUMBERS"                           ;
                 shortcuts_pc_layer {
 label= "SHORTCUTS PC"                      ;
  bindings = <
-                &trans        &trans        &trans        &trans        &trans                 &kp LC(LA(I)) &kp LC(MINUS) &kp LC(EQUAL) &kp LC(F4)   &kp LC(LS(F))
-                &trans        &trans        &trans        &trans        &trans                 &kp LC(LS(FSLH)) &kp LC(F) &kp LC(LS(O)) &kp LS(LA(F)) &kp LG(LS(S))
-    &trans      &trans        &trans        &trans        &trans        &trans                 &kp LC(H)   &kp LC(LS(H)) &kp LC(LS(TAB)) &kp LC(TAB)  &trans        &trans
-                                               &trans        &trans        &trans          &trans      &trans        &trans
+                &close_window_pc &rename_symbol_pc &zoom_in_pc     &zoom_out_pc    &find_in_files_pc                       &find_in_files_pc &zoom_out_pc      &zoom_in_pc       &rename_symbol_pc &close_window_pc
+                &screenshot_pc   &go_to_file_pc    &open_file_pc   &find_pc        &find_all_references_pc                 &find_all_references_pc &find_pc    &open_file_pc     &go_to_file_pc    &screenshot_pc
+    &trans      &trans           &next_editor_pc   &prev_editor_pc &replace_in_files_pc &replace_pc                        &replace_pc &replace_in_files_pc &prev_editor_pc   &next_editor_pc   &trans            &trans
+                                                                                  &trans     &trans     &trans         &trans     &trans      &trans
                         >;
                 };
 
@@ -196,10 +203,10 @@ label= "SHORTCUTS PC"                      ;
                 shortcuts_mac_layer {
 label= "SHORTCUTS MAC"                     ;
  bindings = <
-                &trans        &trans        &trans        &trans        &trans                 &kp LG(LA(I)) &kp LG(MINUS) &kp LG(EQUAL) &kp LG(W)    &kp LG(LS(F))
-                &trans        &trans        &trans        &trans        &trans                 &kp LG(LS(FSLH)) &kp LG(F) &kp LG(LS(O)) &kp LG(LS(LA(F))) &kp LG(LS(N4))
-    &trans      &trans        &trans        &trans        &trans        &trans                 &kp LG(LA(F)) &kp LG(LS(H)) &kp LC(LS(TAB)) &kp LC(TAB)  &trans        &trans
-                                               &trans        &trans        &trans          &trans      &trans        &trans
+                &close_window_mac &rename_symbol_mac &zoom_in_mac     &zoom_out_mac         &find_in_files_mac               &find_in_files_mac &zoom_out_mac     &zoom_in_mac      &rename_symbol_mac &close_window_mac
+                &screenshot_mac   &go_to_file_mac    &open_file_mac   &find_mac             &find_all_references_mac         &find_all_references_mac &find_mac &open_file_mac    &go_to_file_mac   &screenshot_mac
+    &trans      &trans            &next_editor_mac   &prev_editor_mac &replace_in_files_mac &replace_mac                     &replace_mac &replace_in_files_mac &prev_editor_mac &next_editor_mac   &trans            &trans
+                                                                                  &trans     &trans     &trans         &trans     &trans      &trans
                         >;
                 };
 
