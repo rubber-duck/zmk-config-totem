@@ -1,4 +1,118 @@
-#include <behaviors.dtsi>
+#!/usr/bin/env python3
+"""Format ZMK keymap layers as 14x4 grids."""
+
+def format_layer(name, label, grid):
+    """Format layer from 14x4 grid. Col 6 gets +6 padding, others +2."""
+    col_widths = [max(len(grid[r][c]) for r in range(4)) for c in range(14)]
+
+    def fmt_row(row_idx):
+        parts = []
+        for col in range(14):
+            key = grid[row_idx][col]
+            w = col_widths[col]
+            pad = 6 if col == 6 else 2
+            if col == 13:
+                parts.append(key)
+            else:
+                parts.append(f"{key:<{w + pad}}")
+        return "".join(parts).rstrip()
+
+    return "\n".join([
+        f"                {name} {{",
+        f'label= "{label}";',
+        "bindings = <",
+        fmt_row(0),
+        fmt_row(1),
+        fmt_row(2),
+        fmt_row(3),
+        ">;",
+        "                };"
+    ])
+
+# Layers as (name, label, 14x4 grid)
+# Grid columns: 0=outer_l, 1-5=left, 6=thumb_l3, 7=thumb_r1, 8-12=right, 13=outer_r
+layers = [
+    ("colemak_pc_layer", "COLEMAK PC", [
+        ["",          "&kp Q", "&kp W", "&kp F", "&kp P",   "&kp B",   "",        "",        "&kp J",   "&kp L", "&kp U",     "&kp Y",   "&kp SQT", ""],
+        ["&kp LSHFT", "hm_a",  "hm_r",  "hm_s",  "hm_t",    "&kp G",   "",        "",        "&kp M",   "hm_n",  "hm_e",      "hm_i",    "hm_o",    "mo_bt"],
+        ["",          "&kp Z", "&kp X", "&kp C", "&kp D",   "&kp V",   "",        "",        "&kp K",   "&kp H", "&kp COMMA", "&kp DOT", "&kp FSLH", ""],
+        ["",          "",      "",      "",      "&pcl_sh", "&pcl_br", "&pcl_na", "&pcl_nu", "&pcl_sy", "&pcl_fn", "",        "",        "",        ""],
+    ]),
+    ("colemak_mac_layer", "COLEMAK MAC", [
+        ["",          "&kp Q", "&kp W", "&kp F", "&kp P",   "&kp B",   "",        "",        "&kp J",   "&kp L", "&kp U",     "&kp Y",   "&kp SQT", ""],
+        ["&kp LSHFT", "hm_a",  "hm_r",  "hm_s",  "hm_t",    "&kp G",   "",        "",        "&kp M",   "hm_n",  "hm_e",      "hm_i",    "hm_o",    "mo_bt"],
+        ["",          "&kp Z", "&kp X", "&kp C", "&kp D",   "&kp V",   "",        "",        "&kp K",   "&kp H", "&kp COMMA", "&kp DOT", "&kp FSLH", ""],
+        ["",          "",      "",      "",      "&mcl_sh", "&mcl_br", "&mcl_na", "&mcl_nu", "&mcl_sy", "&mcl_fn", "",        "",        "",        ""],
+    ]),
+    ("qwerty_gaming_layer", "QWERTY GAMING", [
+        ["",         "&kp Q", "&kp W", "&kp E", "&kp R",   "&kp T",     "",        "",        "&kp Y",   "&kp U",    "&kp I",     "&kp O",   "&kp P",    ""],
+        ["&kp LGUI", "&kp A", "&kp S", "&kp D", "&kp F",   "&kp G",     "",        "",        "&kp H",   "&kp J",    "&kp K",     "&kp L",   "&kp SEMI", "mo_bt"],
+        ["",         "&kp Z", "&kp X", "&kp C", "&kp V",   "&kp B",     "",        "",        "&kp N",   "&kp M",    "&kp COMMA", "&kp DOT", "&kp FSLH", ""],
+        ["",         "",      "",      "",      "&kp ESC", "&kp SPACE", "&kp TAB", "&kp RET", "&kp BSPC", "&kp DEL", "",          "",        "",         ""],
+    ]),
+    ("symbols_layer", "SYMBOLS", [
+        ["",       "&k_at",   "&k_dllr", "&k_hash", "&k_pcnt", "&k_star", "",      "",      "&k_star", "&k_pcnt", "&k_hash", "&k_dllr", "&k_at",   ""],
+        ["&trans", "&k_ampr", "&k_pipe", "&k_cart", "&kp BSLH", "&kp FSLH", "",   "",      "&kp FSLH", "&kp BSLH", "&k_cart", "&k_pipe", "&k_ampr", "&trans"],
+        ["",       "&k_tild", "&k_plus", "&kp MINUS", "&k_undr", "&k_ques", "",   "",      "&k_ques", "&k_undr", "&kp MINUS", "&k_plus", "&k_tild", ""],
+        ["",       "",        "",        "",        "&none",   "&none",   "&none", "&none", "&none",   "&none",   "",        "",        "",        ""],
+    ]),
+    ("brackets_pc_layer", "BRACKETS PC", [
+        ["",       "&kp LBKT", "&kp RBKT", "&k_lt",   "&k_gt",   "&k_coln", "",      "",      "&k_coln", "&k_lt",   "&k_gt",   "&kp LBKT", "&kp RBKT", ""],
+        ["&trans", "&k_lcrl",  "&k_rcrl",  "&k_lprn", "&k_rprn", "&kp SEMI", "",     "",      "&kp SEMI", "&k_lprn", "&k_rprn", "&k_lcrl",  "&k_rcrl",  "&trans"],
+        ["",       "&kp GRAVE", "&kp SQT", "&k_dquo", "&k_excl", "&kp EQUAL", "",    "",      "&kp EQUAL", "&k_excl", "&k_dquo", "&kp SQT", "&kp GRAVE", ""],
+        ["",       "",         "",        "",        "&none",   "&none",   "&none", "&none", "&pc_dlwd", "&pc_dlwf", "",        "",        "",         ""],
+    ]),
+    ("brackets_mac_layer", "BRACKETS MAC", [
+        ["",       "&kp LBKT", "&kp RBKT", "&k_lt",   "&k_gt",   "&k_coln", "",      "",      "&k_coln", "&k_lt",   "&k_gt",   "&kp LBKT", "&kp RBKT", ""],
+        ["&trans", "&k_lcrl",  "&k_rcrl",  "&k_lprn", "&k_rprn", "&kp SEMI", "",     "",      "&kp SEMI", "&k_lprn", "&k_rprn", "&k_lcrl",  "&k_rcrl",  "&trans"],
+        ["",       "&kp GRAVE", "&kp SQT", "&k_dquo", "&k_excl", "&kp EQUAL", "",    "",      "&kp EQUAL", "&k_excl", "&k_dquo", "&kp SQT", "&kp GRAVE", ""],
+        ["",       "",         "",        "",        "&none",   "&none",   "&none", "&none", "&mc_dlwd", "&mc_dlwf", "",        "",        "",         ""],
+    ]),
+    ("numbers_layer", "NUMBERS", [
+        ["",       "&k_star",   "&kp N7", "&kp N8", "&kp N9", "&k_plus",    "",        "",      "&k_plus",    "&kp N7",    "&kp N8", "&kp N9", "&k_star",   ""],
+        ["&trans", "&kp FSLH",  "&kp N4", "&kp N5", "&kp N6", "&kp MINUS",  "",        "",      "&kp MINUS",  "&kp N4",    "&kp N5", "&kp N6", "&kp FSLH",  "&trans"],
+        ["",       "&kp N0",    "&kp N1", "&kp N2", "&kp N3", "&kp EQUAL",  "",        "",      "&kp EQUAL",  "&kp N1",    "&kp N2", "&kp N3", "&kp N0",    ""],
+        ["",       "",          "",       "",       "&kp COMMA", "&kp DOT", "&kp RET", "&none", "&kp DOT",    "&kp COMMA", "",       "",       "",          ""],
+    ]),
+    ("navigation_pc_layer", "NAVIGATION PC", [
+        ["",       "&pc_undo",  "&pc_cut",  "&pc_copy", "&pc_pste", "&pc_redo", "",      "",      "&pc_redo", "&pc_pste", "&pc_copy", "&pc_cut",  "&pc_undo", ""],
+        ["&trans", "&kp HOME",  "&kp PG_DN", "&kp PG_UP", "&kp END", "&pc_prnt", "",     "",      "&pc_prnt", "&kp LEFT", "&kp DOWN", "&kp UP",   "&kp RIGHT", "&trans"],
+        ["",       "&pc_gtln",  "&pc_zmbk", "&pc_zmfw", "&pc_swfl", "&pc_palt", "",      "",      "&pc_palt", "&pc_swfl", "&pc_zmfw", "&pc_zmbk", "&pc_gtln", ""],
+        ["",       "",          "",         "",         "&pc_slal", "&pc_save", "&none", "&none", "&kp BSPC", "&kp DEL",  "",         "",         "",         ""],
+    ]),
+    ("navigation_mac_layer", "NAVIGATION MAC", [
+        ["",       "&mc_undo",  "&mc_cut",  "&mc_copy", "&mc_pste", "&mc_redo", "",      "",      "&mc_redo", "&mc_pste", "&mc_copy", "&mc_cut",  "&mc_undo", ""],
+        ["&trans", "&kp HOME",  "&kp PG_DN", "&kp PG_UP", "&kp END", "&mc_prnt", "",     "",      "&mc_prnt", "&kp LEFT", "&kp DOWN", "&kp UP",   "&kp RIGHT", "&trans"],
+        ["",       "&mc_gtln",  "&mc_zmbk", "&mc_zmfw", "&mc_swfl", "&mc_palt", "",      "",      "&mc_palt", "&mc_swfl", "&mc_zmfw", "&mc_zmbk", "&mc_gtln", ""],
+        ["",       "",          "",         "",         "&mc_slal", "&mc_save", "&none", "&none", "&kp BSPC", "&kp DEL",  "",         "",         "",         ""],
+    ]),
+    ("shortcuts_pc_layer", "SHORTCUTS PC", [
+        ["",      "&pc_scrn", "&pc_cmnt", "&pc_rpfl", "&pc_fnfl", "&pc_zmin", "",       "",       "&pc_zmin", "&pc_fnfl", "&pc_rpfl", "&pc_cmnt", "&pc_scrn", ""],
+        ["&trans", "&pc_shot", "&pc_frmt", "&pc_rplc", "&pc_find", "&pc_zmot", "",       "",       "&pc_zmot", "&pc_find", "&pc_rplc", "&pc_frmt", "&pc_shot", "&trans"],
+        ["",      "&pc_srec", "&pc_gdef", "&pc_gimp", "&pc_qfix", "&pc_ctab", "",       "",       "&pc_ctab", "&pc_qfix", "&pc_gimp", "&pc_gdef", "&pc_srec", ""],
+        ["",      "",         "",         "",         "&trans",   "&trans",   "&trans", "&trans", "&trans",   "&trans",   "",         "",         "",         ""],
+    ]),
+    ("shortcuts_mac_layer", "SHORTCUTS MAC", [
+        ["",      "&mc_scrn", "&mc_cmnt", "&mc_rpfl", "&mc_fnfl", "&mc_zmin", "",       "",       "&mc_zmin", "&mc_fnfl", "&mc_rpfl", "&mc_cmnt", "&mc_scrn", ""],
+        ["&trans", "&mc_shot", "&mc_frmt", "&mc_rplc", "&mc_find", "&mc_zmot", "",       "",       "&mc_zmot", "&mc_find", "&mc_rplc", "&mc_frmt", "&mc_shot", "&trans"],
+        ["",      "&mc_srec", "&mc_gdef", "&mc_gimp", "&mc_qfix", "&mc_ctab", "",       "",       "&mc_ctab", "&mc_qfix", "&mc_gimp", "&mc_gdef", "&mc_srec", ""],
+        ["",      "",         "",         "",         "&trans",   "&trans",   "&trans", "&trans", "&trans",   "&trans",   "",         "",         "",         ""],
+    ]),
+    ("function_layer", "FUNCTION", [
+        ["",      "to_pc",   "&kp F9", "&kp F8", "&kp F7", "&kp F10", "",      "",      "&kp F10", "&kp F7", "&kp F8", "&kp F9", "to_pc",   ""],
+        ["&trans", "to_mac",  "&kp F6", "&kp F5", "&kp F4", "&kp F11", "",      "",      "&kp F11", "&kp F4", "&kp F5", "&kp F6", "to_mac",  "&trans"],
+        ["",      "to_game", "&kp F3", "&kp F2", "&kp F1", "&kp F12", "",      "",      "&kp F12", "&kp F1", "&kp F2", "&kp F3", "to_game", ""],
+        ["",      "",        "",       "",       "&none",  "&none",   "&none", "&none", "&none",   "&none",  "",       "",       "",        ""],
+    ]),
+    ("bluetooth_layer", "BLUETOOTH", [
+        ["",       "&bt0_pc",    "&bt1_mac",     "&bt2",       "&bt3",        "&bt4",   "",       "",       "&trans", "&trans", "&trans", "&trans", "to_pc",   ""],
+        ["&trans", "&trans",     "&trans",       "&trans",     "&trans",      "&trans", "",       "",       "&trans", "&trans", "&trans", "&trans", "to_mac",  "&trans"],
+        ["",       "&bt BT_CLR", "&out OUT_TOG", "&sys_reset", "&bootloader", "&trans", "",       "",       "&trans", "&trans", "&trans", "&trans", "to_game", ""],
+        ["",       "",           "",             "",           "&trans",      "&trans", "&trans", "&trans", "&trans", "&trans", "",       "",       "",        ""],
+    ]),
+]
+
+header = """#include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
@@ -173,135 +287,21 @@
 
         keymap {
                 compatible = "zmk,keymap";
+"""
 
-                colemak_pc_layer {
-label= "COLEMAK PC";
-bindings = <
-           &kp Q  &kp W  &kp F  &kp P    &kp B                          &kp J    &kp L    &kp U      &kp Y    &kp SQT
-&kp LSHFT  hm_a   hm_r   hm_s   hm_t     &kp G                          &kp M    hm_n     hm_e       hm_i     hm_o      mo_bt
-           &kp Z  &kp X  &kp C  &kp D    &kp V                          &kp K    &kp H    &kp COMMA  &kp DOT  &kp FSLH
-                                &pcl_sh  &pcl_br  &pcl_na      &pcl_nu  &pcl_sy  &pcl_fn
->;
-                };
-
-                colemak_mac_layer {
-label= "COLEMAK MAC";
-bindings = <
-           &kp Q  &kp W  &kp F  &kp P    &kp B                          &kp J    &kp L    &kp U      &kp Y    &kp SQT
-&kp LSHFT  hm_a   hm_r   hm_s   hm_t     &kp G                          &kp M    hm_n     hm_e       hm_i     hm_o      mo_bt
-           &kp Z  &kp X  &kp C  &kp D    &kp V                          &kp K    &kp H    &kp COMMA  &kp DOT  &kp FSLH
-                                &mcl_sh  &mcl_br  &mcl_na      &mcl_nu  &mcl_sy  &mcl_fn
->;
-                };
-
-                qwerty_gaming_layer {
-label= "QWERTY GAMING";
-bindings = <
-          &kp Q  &kp W  &kp E  &kp R    &kp T                            &kp Y     &kp U    &kp I      &kp O    &kp P
-&kp LGUI  &kp A  &kp S  &kp D  &kp F    &kp G                            &kp H     &kp J    &kp K      &kp L    &kp SEMI  mo_bt
-          &kp Z  &kp X  &kp C  &kp V    &kp B                            &kp N     &kp M    &kp COMMA  &kp DOT  &kp FSLH
-                               &kp ESC  &kp SPACE  &kp TAB      &kp RET  &kp BSPC  &kp DEL
->;
-                };
-
-                symbols_layer {
-label= "SYMBOLS";
-bindings = <
-        &k_at    &k_dllr  &k_hash    &k_pcnt   &k_star                     &k_star   &k_pcnt   &k_hash    &k_dllr  &k_at
-&trans  &k_ampr  &k_pipe  &k_cart    &kp BSLH  &kp FSLH                    &kp FSLH  &kp BSLH  &k_cart    &k_pipe  &k_ampr  &trans
-        &k_tild  &k_plus  &kp MINUS  &k_undr   &k_ques                     &k_ques   &k_undr   &kp MINUS  &k_plus  &k_tild
-                                     &none     &none     &none      &none  &none     &none
->;
-                };
-
-                brackets_pc_layer {
-label= "BRACKETS PC";
-bindings = <
-        &kp LBKT   &kp RBKT  &k_lt    &k_gt    &k_coln                      &k_coln    &k_lt     &k_gt    &kp LBKT  &kp RBKT
-&trans  &k_lcrl    &k_rcrl   &k_lprn  &k_rprn  &kp SEMI                     &kp SEMI   &k_lprn   &k_rprn  &k_lcrl   &k_rcrl    &trans
-        &kp GRAVE  &kp SQT   &k_dquo  &k_excl  &kp EQUAL                    &kp EQUAL  &k_excl   &k_dquo  &kp SQT   &kp GRAVE
-                                      &none    &none      &none      &none  &pc_dlwd   &pc_dlwf
->;
-                };
-
-                brackets_mac_layer {
-label= "BRACKETS MAC";
-bindings = <
-        &kp LBKT   &kp RBKT  &k_lt    &k_gt    &k_coln                      &k_coln    &k_lt     &k_gt    &kp LBKT  &kp RBKT
-&trans  &k_lcrl    &k_rcrl   &k_lprn  &k_rprn  &kp SEMI                     &kp SEMI   &k_lprn   &k_rprn  &k_lcrl   &k_rcrl    &trans
-        &kp GRAVE  &kp SQT   &k_dquo  &k_excl  &kp EQUAL                    &kp EQUAL  &k_excl   &k_dquo  &kp SQT   &kp GRAVE
-                                      &none    &none      &none      &none  &mc_dlwd   &mc_dlwf
->;
-                };
-
-                numbers_layer {
-label= "NUMBERS";
-bindings = <
-        &k_star   &kp N7  &kp N8  &kp N9     &k_plus                        &k_plus    &kp N7     &kp N8  &kp N9  &k_star
-&trans  &kp FSLH  &kp N4  &kp N5  &kp N6     &kp MINUS                      &kp MINUS  &kp N4     &kp N5  &kp N6  &kp FSLH  &trans
-        &kp N0    &kp N1  &kp N2  &kp N3     &kp EQUAL                      &kp EQUAL  &kp N1     &kp N2  &kp N3  &kp N0
-                                  &kp COMMA  &kp DOT    &kp RET      &none  &kp DOT    &kp COMMA
->;
-                };
-
-                navigation_pc_layer {
-label= "NAVIGATION PC";
-bindings = <
-        &pc_undo  &pc_cut    &pc_copy   &pc_pste  &pc_redo                    &pc_redo  &pc_pste  &pc_copy  &pc_cut   &pc_undo
-&trans  &kp HOME  &kp PG_DN  &kp PG_UP  &kp END   &pc_prnt                    &pc_prnt  &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT  &trans
-        &pc_gtln  &pc_zmbk   &pc_zmfw   &pc_swfl  &pc_palt                    &pc_palt  &pc_swfl  &pc_zmfw  &pc_zmbk  &pc_gtln
-                                        &pc_slal  &pc_save  &none      &none  &kp BSPC  &kp DEL
->;
-                };
-
-                navigation_mac_layer {
-label= "NAVIGATION MAC";
-bindings = <
-        &mc_undo  &mc_cut    &mc_copy   &mc_pste  &mc_redo                    &mc_redo  &mc_pste  &mc_copy  &mc_cut   &mc_undo
-&trans  &kp HOME  &kp PG_DN  &kp PG_UP  &kp END   &mc_prnt                    &mc_prnt  &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT  &trans
-        &mc_gtln  &mc_zmbk   &mc_zmfw   &mc_swfl  &mc_palt                    &mc_palt  &mc_swfl  &mc_zmfw  &mc_zmbk  &mc_gtln
-                                        &mc_slal  &mc_save  &none      &none  &kp BSPC  &kp DEL
->;
-                };
-
-                shortcuts_pc_layer {
-label= "SHORTCUTS PC";
-bindings = <
-        &pc_scrn  &pc_cmnt  &pc_rpfl  &pc_fnfl  &pc_zmin                      &pc_zmin  &pc_fnfl  &pc_rpfl  &pc_cmnt  &pc_scrn
-&trans  &pc_shot  &pc_frmt  &pc_rplc  &pc_find  &pc_zmot                      &pc_zmot  &pc_find  &pc_rplc  &pc_frmt  &pc_shot  &trans
-        &pc_srec  &pc_gdef  &pc_gimp  &pc_qfix  &pc_ctab                      &pc_ctab  &pc_qfix  &pc_gimp  &pc_gdef  &pc_srec
-                                      &trans    &trans    &trans      &trans  &trans    &trans
->;
-                };
-
-                shortcuts_mac_layer {
-label= "SHORTCUTS MAC";
-bindings = <
-        &mc_scrn  &mc_cmnt  &mc_rpfl  &mc_fnfl  &mc_zmin                      &mc_zmin  &mc_fnfl  &mc_rpfl  &mc_cmnt  &mc_scrn
-&trans  &mc_shot  &mc_frmt  &mc_rplc  &mc_find  &mc_zmot                      &mc_zmot  &mc_find  &mc_rplc  &mc_frmt  &mc_shot  &trans
-        &mc_srec  &mc_gdef  &mc_gimp  &mc_qfix  &mc_ctab                      &mc_ctab  &mc_qfix  &mc_gimp  &mc_gdef  &mc_srec
-                                      &trans    &trans    &trans      &trans  &trans    &trans
->;
-                };
-
-                function_layer {
-label= "FUNCTION";
-bindings = <
-        to_pc    &kp F9  &kp F8  &kp F7  &kp F10                    &kp F10  &kp F7  &kp F8  &kp F9  to_pc
-&trans  to_mac   &kp F6  &kp F5  &kp F4  &kp F11                    &kp F11  &kp F4  &kp F5  &kp F6  to_mac   &trans
-        to_game  &kp F3  &kp F2  &kp F1  &kp F12                    &kp F12  &kp F1  &kp F2  &kp F3  to_game
-                                 &none   &none    &none      &none  &none    &none
->;
-                };
-
-                bluetooth_layer {
-label= "BLUETOOTH";
-bindings = <
-        &bt0_pc     &bt1_mac      &bt2        &bt3         &bt4                        &trans  &trans  &trans  &trans  to_pc
-&trans  &trans      &trans        &trans      &trans       &trans                      &trans  &trans  &trans  &trans  to_mac   &trans
-        &bt BT_CLR  &out OUT_TOG  &sys_reset  &bootloader  &trans                      &trans  &trans  &trans  &trans  to_game
-                                              &trans       &trans  &trans      &trans  &trans  &trans
->;
-                };
-        };
+footer = """        };
 };
+"""
+
+if __name__ == "__main__":
+    output = header
+    for name, label, grid in layers:
+        output += "\n" + format_layer(name, label, grid) + "\n"
+    output += footer
+
+    with open("config/totem.keymap", "w") as f:
+        f.write(output)
+
+    print("Generated config/totem.keymap")
+    print("\nPreview of first layer:")
+    print(format_layer(layers[0][0], layers[0][1], layers[0][2]))
