@@ -75,16 +75,16 @@ layers = [
         ["",       "",          "",       "",       "&kp COMMA", "&kp DOT", "&kp RET", "&none", "&kp DOT",    "&kp COMMA", "",       "",       "",          ""],
     ]),
     ("navigation_pc_layer", "NAVIGATION PC", [
-        ["",       "&pc_undo",  "&pc_cut",  "&pc_copy", "&pc_pste", "&pc_redo", "",      "",      "&pc_redo", "&pc_pste", "&pc_copy", "&pc_cut",  "&pc_undo", ""],
+        ["",       "&pc_undo",  "&pc_cut",  "&pc_copy", "&pc_pste", "&pc_redo", "",      "",      "&pc_gobk", "&pc_wdlf", "&pc_gtbr", "&pc_gtbr", "&pc_wdrt", ""],
         ["&trans", "&kp HOME",  "&kp PG_DN", "&kp PG_UP", "&kp END", "&pc_prnt", "",     "",      "&pc_prnt", "&kp LEFT", "&kp DOWN", "&kp UP",   "&kp RIGHT", "&trans"],
         ["",       "&pc_gtln",  "&pc_zmbk", "&pc_zmfw", "&pc_swfl", "&pc_palt", "",      "",      "&pc_palt", "&pc_swfl", "&pc_zmfw", "&pc_zmbk", "&pc_gtln", ""],
-        ["",       "",          "",         "",         "&pc_slal", "&pc_save", "&none", "&none", "&kp BSPC", "&kp DEL",  "",         "",         "",         ""],
+        ["",       "",          "",         "",         "&pc_slal", "&pc_save", "&none", "&none", "&pc_dlls", "&pc_dlle", "",         "",         "",         ""],
     ]),
     ("navigation_mac_layer", "NAVIGATION MAC", [
-        ["",       "&mc_undo",  "&mc_cut",  "&mc_copy", "&mc_pste", "&mc_redo", "",      "",      "&mc_redo", "&mc_pste", "&mc_copy", "&mc_cut",  "&mc_undo", ""],
+        ["",       "&mc_undo",  "&mc_cut",  "&mc_copy", "&mc_pste", "&mc_redo", "",      "",      "&mc_gobk", "&mc_wdlf", "&mc_gtbr", "&mc_gtbr", "&mc_wdrt", ""],
         ["&trans", "&kp HOME",  "&kp PG_DN", "&kp PG_UP", "&kp END", "&mc_prnt", "",     "",      "&mc_prnt", "&kp LEFT", "&kp DOWN", "&kp UP",   "&kp RIGHT", "&trans"],
         ["",       "&mc_gtln",  "&mc_zmbk", "&mc_zmfw", "&mc_swfl", "&mc_palt", "",      "",      "&mc_palt", "&mc_swfl", "&mc_zmfw", "&mc_zmbk", "&mc_gtln", ""],
-        ["",       "",          "",         "",         "&mc_slal", "&mc_save", "&none", "&none", "&kp BSPC", "&kp DEL",  "",         "",         "",         ""],
+        ["",       "",          "",         "",         "&mc_slal", "&mc_save", "&none", "&none", "&mc_dlls", "&mc_dlle", "",         "",         "",         ""],
     ]),
     ("shortcuts_pc_layer", "SHORTCUTS PC", [
         ["",      "&pc_scrn", "&pc_cmnt", "&pc_rpfl", "&pc_fnfl", "&pc_zmin", "",       "",       "&pc_zmin", "&pc_fnfl", "&pc_rpfl", "&pc_cmnt", "&pc_scrn", ""],
@@ -203,7 +203,7 @@ header = """#include <behaviors.dtsi>
                 pc_gimp: pc_gimp { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(F12)>; };
                 pc_qfix: pc_qfix { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(DOT)>; };
                 pc_ctab: pc_ctab { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(W)>; };
-                pc_capp: pc_capp { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LG(F4)>; };
+                pc_capp: pc_capp { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LA(F4)>; };
 
                 // Mac Shortcuts
                 mc_scrn: mc_scrn { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LG(LS(N3))>; };
@@ -258,7 +258,7 @@ header = """#include <behaviors.dtsi>
                 pc_save: pc_save { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(S)>; };
                 pc_gtln: pc_gtln { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(G)>; };
                 pc_zmbk: pc_zmbk { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(MINUS)>; };
-                pc_zmfw: pc_zmfw { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(LS(MINUS))>; };
+                pc_zmfw: pc_zmfw { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(EQUAL)>; };
                 pc_swfl: pc_swfl { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(LS(O))>; };
                 pc_prnt: pc_prnt { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(P)>; };
                 pc_palt: pc_palt { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(LS(P))>; };
@@ -271,9 +271,9 @@ header = """#include <behaviors.dtsi>
                 mc_pste: mc_pste { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LG(V)>; };
                 mc_slal: mc_slal { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LG(A)>; };
                 mc_save: mc_save { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LG(S)>; };
-                mc_gtln: mc_gtln { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LG(G)>; };
+                mc_gtln: mc_gtln { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(G)>; };
                 mc_zmbk: mc_zmbk { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LG(MINUS)>; };
-                mc_zmfw: mc_zmfw { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LG(LS(MINUS))>; };
+                mc_zmfw: mc_zmfw { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LG(EQUAL)>; };
                 mc_swfl: mc_swfl { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LG(LS(O))>; };
                 mc_prnt: mc_prnt { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LG(P)>; };
                 mc_palt: mc_palt { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LG(LS(P))>; };
@@ -283,6 +283,26 @@ header = """#include <behaviors.dtsi>
                 pc_dlwf: pc_dlwf { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(DEL)>; };
                 mc_dlwd: mc_dlwd { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LA(BSPC)>; };
                 mc_dlwf: mc_dlwf { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LA(DEL)>; };
+
+                // Delete to line start/end macros
+                pc_dlls: pc_dlls { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LS(HOME)>, <&kp BSPC>; };
+                pc_dlle: pc_dlle { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LS(END)>, <&kp DEL>; };
+                mc_dlls: mc_dlls { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LG(BSPC)>; };
+                mc_dlle: mc_dlle { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(K)>; };
+
+                // Word movement macros
+                pc_wdlf: pc_wdlf { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(LEFT)>; };
+                pc_wdrt: pc_wdrt { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(RIGHT)>; };
+                mc_wdlf: mc_wdlf { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LA(LEFT)>; };
+                mc_wdrt: mc_wdrt { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LA(RIGHT)>; };
+
+                // Go to matching bracket macros
+                pc_gtbr: pc_gtbr { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(LS(BSLH))>; };
+                mc_gtbr: mc_gtbr { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LG(LS(BSLH))>; };
+
+                // Go back (previous cursor position) macros
+                pc_gobk: pc_gobk { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LA(LEFT)>; };
+                mc_gobk: mc_gobk { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(MINUS)>; };
         };
 
         keymap {
