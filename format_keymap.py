@@ -36,13 +36,13 @@ layers = [
         ["",          "&kp Q", "&kp W", "&kp F", "&kp P",   "&kp B",   "",        "",        "&kp J",   "&kp L",   "&kp U",     "&kp Y",   "&kp SQT",  ""],
         ["",          "hm_a",  "hm_r",  "hm_s",  "hm_t",    "&kp G",   "",        "",        "&kp M",   "hm_n",    "hm_e",      "hm_i",    "hm_o",     ""],
         ["&kp LSHFT", "&kp Z", "&kp X", "&kp C", "&kp D",   "&kp V",   "",        "",        "&kp K",   "&kp H",   "&kp COMMA", "&kp DOT", "&kp FSLH", "mo_bt"],
-        ["",          "",      "",      "",      "&pcl_sh", "&pcl_br", "&pcl_na", "&pcl_nu", "&pcl_sy", "&pcl_fn", "",          "",        "",         ""],
+        ["",          "",      "",      "",      "pcl_sh",  "pcl_br",  "pcl_na",  "pcl_nu",  "pcl_sy",  "pcl_fn",  "",          "",        "",         ""],
     ]),
     ("colemak_mac_layer", "COLEMAK MAC", [
         ["",          "&kp Q", "&kp W", "&kp F", "&kp P",   "&kp B",   "",        "",        "&kp J",   "&kp L",   "&kp U",     "&kp Y",   "&kp SQT",  ""],
         ["",          "hm_a",  "hm_r",  "hm_s",  "hm_t",    "&kp G",   "",        "",        "&kp M",   "hm_n",    "hm_e",      "hm_i",    "hm_o",     ""],
         ["&kp LSHFT", "&kp Z", "&kp X", "&kp C", "&kp D",   "&kp V",   "",        "",        "&kp K",   "&kp H",   "&kp COMMA", "&kp DOT", "&kp FSLH", "mo_bt"],
-        ["",          "",      "",      "",      "&mcl_sh", "&mcl_br", "&mcl_na", "&mcl_nu", "&mcl_sy", "&mcl_fn", "",          "",        "",         ""],
+        ["",          "",      "",      "",      "mcl_sh",  "mcl_br",  "mcl_na",  "mcl_nu",  "mcl_sy",  "mcl_fn",  "",          "",        "",         ""],
     ]),
     ("qwerty_gaming_layer", "QWERTY GAMING", [
         ["",         "&kp Q", "&kp W", "&kp E", "&kp R",   "&kp T",     "",        "",        "&kp Y",    "&kp U",   "&kp I",     "&kp O",   "&kp P",    ""],
