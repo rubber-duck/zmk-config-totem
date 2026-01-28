@@ -147,6 +147,22 @@ header = """#include <behaviors.dtsi>
 #define to_game &to QWERTY_GAMING
 #define mo_bt &mo BLUETOOTH
 
+// PC Layer-tap (must be #define, not ZMK macros)
+#define pcl_sh &lt SHORTCUTS_PC ESC
+#define pcl_br &lt BRACKETS_PC SPACE
+#define pcl_na &lt NAVIGATION_PC TAB
+#define pcl_nu &lt NUMBERS RET
+#define pcl_sy &lt SYMBOLS BSPC
+#define pcl_fn &lt FUNCTION DEL
+
+// Mac Layer-tap
+#define mcl_sh &lt SHORTCUTS_MAC ESC
+#define mcl_br &lt BRACKETS_MAC SPACE
+#define mcl_na &lt NAVIGATION_MAC TAB
+#define mcl_nu &lt NUMBERS RET
+#define mcl_sy &lt SYMBOLS BSPC
+#define mcl_fn &lt FUNCTION DEL
+
 &mt {
   quick-tap-ms = <100>;
   global-quick-tap;
@@ -170,22 +186,6 @@ header = """#include <behaviors.dtsi>
                 bt2: bt2 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&bt BT_SEL 2>; };
                 bt3: bt3 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&bt BT_SEL 3>; };
                 bt4: bt4 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&bt BT_SEL 4>; };
-
-                // PC Layer-tap macros
-                pcl_sh: pcl_sh { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&lt SHORTCUTS_PC ESC>; };
-                pcl_br: pcl_br { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&lt BRACKETS_PC SPACE>; };
-                pcl_na: pcl_na { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&lt NAVIGATION_PC TAB>; };
-                pcl_nu: pcl_nu { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&lt NUMBERS RET>; };
-                pcl_sy: pcl_sy { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&lt SYMBOLS BSPC>; };
-                pcl_fn: pcl_fn { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&lt FUNCTION DEL>; };
-
-                // Mac Layer-tap macros
-                mcl_sh: mcl_sh { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&lt SHORTCUTS_MAC ESC>; };
-                mcl_br: mcl_br { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&lt BRACKETS_MAC SPACE>; };
-                mcl_na: mcl_na { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&lt NAVIGATION_MAC TAB>; };
-                mcl_nu: mcl_nu { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&lt NUMBERS RET>; };
-                mcl_sy: mcl_sy { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&lt SYMBOLS BSPC>; };
-                mcl_fn: mcl_fn { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&lt FUNCTION DEL>; };
 
                 // PC Shortcuts
                 pc_scrn: pc_scrn { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp PSCRN>; };
