@@ -28,3 +28,13 @@ TOTEM is a 38 key column-staggered split keyboard running [ZMK](https://zmk.dev/
 - the keyboard should now appear as a mass storage device
 - drag'n'drop the `totem_left-seeeduino_xiao_ble-zmk.uf2` file from the archive onto the storage device
 - repeat this process with the right half and the `totem_right-seeeduino_xiao_ble-zmk.uf2` file.
+
+## LOCAL BUILD
+
+The GitHub Actions workflow delegates to ZMK's reusable user-config build. To run the same containerized flow locally:
+
+```sh
+scripts/build-local.sh
+```
+
+The script uses `zmkfirmware/zmk-build-arm:stable`, reads `build.yaml`, builds each entry, and writes firmware artifacts to `firmware/`. The first run downloads the Docker image and west modules into `.build/`; later runs reuse that workspace.

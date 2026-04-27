@@ -33,13 +33,13 @@ def format_layer(name, label, grid):
 # Grid columns: 0=outer_l, 1-5=left, 6=thumb_l3, 7=thumb_r1, 8-12=right, 13=outer_r
 layers = [
     ("colemak_pc_layer", "COLEMAK PC", [
-        ["",          "&kp Q", "&kp W", "&kp F", "&kp P",   "&kp B",   "",        "",        "&kp J",   "&kp L",   "&kp U",     "&kp Y",   "&kp SQT",  ""],
+        ["",          "&kp Q", "&kp W", "&kp F", "&kp P",   "tmux_l",  "",        "",        "tmux_r",  "&kp L",   "&kp U",     "&kp Y",   "&kp SQT",  ""],
         ["",          "hm_a",  "hm_r",  "hm_s",  "hm_t",    "&kp G",   "",        "",        "&kp M",   "hm_n",    "hm_e",      "hm_i",    "hm_o",     ""],
         ["&kp LSHFT", "&kp Z", "&kp X", "&kp C", "&kp D",   "&kp V",   "",        "",        "&kp K",   "&kp H",   "&kp COMMA", "&kp DOT", "&kp FSLH", "mo_bt"],
         ["",          "",      "",      "",      "pcl_sh",  "pcl_br",  "pcl_na",  "pcl_nu",  "pcl_sy",  "pcl_fn",  "",          "",        "",         ""],
     ]),
     ("colemak_mac_layer", "COLEMAK MAC", [
-        ["",          "&kp Q", "&kp W", "&kp F", "&kp P",   "&kp B",   "",        "",        "&kp J",   "&kp L",   "&kp U",     "&kp Y",   "&kp SQT",  ""],
+        ["",          "&kp Q", "&kp W", "&kp F", "&kp P",   "tmux_l",  "",        "",        "tmux_r",  "&kp L",   "&kp U",     "&kp Y",   "&kp SQT",  ""],
         ["",          "hm_a",  "hm_r",  "hm_s",  "hm_t",    "&kp G",   "",        "",        "&kp M",   "hm_n",    "hm_e",      "hm_i",    "hm_o",     ""],
         ["&kp LSHFT", "&kp Z", "&kp X", "&kp C", "&kp D",   "&kp V",   "",        "",        "&kp K",   "&kp H",   "&kp COMMA", "&kp DOT", "&kp FSLH", "mo_bt"],
         ["",          "",      "",      "",      "mcl_sh",  "mcl_br",  "mcl_na",  "mcl_nu",  "mcl_sy",  "mcl_fn",  "",          "",        "",         ""],
@@ -98,6 +98,12 @@ layers = [
         ["&trans", "&mc_srec", "&mc_gdef", "&mc_gimp", "&mc_qfix", "&mc_ctab", "",       "",       "&mc_ctab", "&mc_qfix", "&mc_gimp", "&mc_gdef", "&mc_srec", "&trans"],
         ["",       "",         "",         "",         "&trans",   "&trans",   "&trans", "&trans", "&trans",   "&trans",   "",         "",         "",         ""],
     ]),
+    ("tmux_layer", "TMUX", [
+        ["",       "&tm_w1",   "&tm_w2",   "&tm_w3",   "&tm_w4",    "&tm_w5",   "",      "",      "&tm_w6",   "&tm_w7",   "&tm_w8",   "&tm_w9",   "&tm_w0",   ""],
+        ["",       "&tm_new",  "&tm_prev", "&tm_next", "&tm_last",  "&tm_tree", "",      "",      "&tm_tree", "&tm_left", "&tm_down", "&tm_up",   "&tm_right", ""],
+        ["&trans", "&tm_splh", "&tm_splv", "&tm_zoom", "&tm_kill",  "&tm_renm", "",      "",      "&tm_det",  "&tm_rlft", "&tm_rdwn", "&tm_rup",  "&tm_rrgt",  "&trans"],
+        ["",       "",         "",         "",         "&trans",    "&trans",   "&trans", "&trans", "&trans",   "&trans",   "",         "",         "",         ""],
+    ]),
     ("function_layer", "FUNCTION", [
         ["",       "to_pc",   "&kp F9", "&kp F8", "&kp F7", "&kp F10", "",      "",      "&kp F10", "&kp F7", "&kp F8", "&kp F9", "to_pc",   ""],
         ["",       "to_mac",  "&kp F6", "&kp F5", "&kp F4", "&kp F11", "",      "",      "&kp F11", "&kp F4", "&kp F5", "&kp F6", "to_mac",  ""],
@@ -128,8 +134,9 @@ header = """#include <behaviors.dtsi>
 #define NAVIGATION_MAC 8
 #define SHORTCUTS_PC 9
 #define SHORTCUTS_MAC 10
-#define FUNCTION 11
-#define BLUETOOTH 12
+#define TMUX 11
+#define FUNCTION 12
+#define BLUETOOTH 13
 
 // Home row mods
 #define hm_a &mt LGUI A
@@ -146,6 +153,8 @@ header = """#include <behaviors.dtsi>
 #define to_mac &to COLEMAK_MAC
 #define to_game &to QWERTY_GAMING
 #define mo_bt &mo BLUETOOTH
+#define tmux_l &lt TMUX B
+#define tmux_r &lt TMUX J
 
 // PC Layer-tap (must be #define, not ZMK macros)
 #define pcl_sh &lt SHORTCUTS_PC ESC
@@ -303,6 +312,37 @@ header = """#include <behaviors.dtsi>
                 // Go back (previous cursor position) macros
                 pc_gobk: pc_gobk { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LA(LEFT)>; };
                 mc_gobk: mc_gobk { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(MINUS)>; };
+
+                // tmux prefix macros. Keep these aligned with ~/.tmux/keybindings.conf.
+                tm_w1: tm_w1 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(A)>, <&kp N1>; };
+                tm_w2: tm_w2 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(A)>, <&kp N2>; };
+                tm_w3: tm_w3 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(A)>, <&kp N3>; };
+                tm_w4: tm_w4 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(A)>, <&kp N4>; };
+                tm_w5: tm_w5 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(A)>, <&kp N5>; };
+                tm_w6: tm_w6 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(A)>, <&kp N6>; };
+                tm_w7: tm_w7 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(A)>, <&kp N7>; };
+                tm_w8: tm_w8 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(A)>, <&kp N8>; };
+                tm_w9: tm_w9 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(A)>, <&kp N9>; };
+                tm_w0: tm_w0 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(A)>, <&kp N0>; };
+                tm_new: tm_new { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(A)>, <&kp C>; };
+                tm_prev: tm_prev { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(A)>, <&kp P>; };
+                tm_next: tm_next { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(A)>, <&kp N>; };
+                tm_last: tm_last { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(A)>, <&kp L>; };
+                tm_tree: tm_tree { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(A)>, <&kp W>; };
+                tm_left: tm_left { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(A)>, <&kp LEFT>; };
+                tm_down: tm_down { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(A)>, <&kp DOWN>; };
+                tm_up: tm_up { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(A)>, <&kp UP>; };
+                tm_right: tm_right { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(A)>, <&kp RIGHT>; };
+                tm_splh: tm_splh { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(A)>, <&kp H>; };
+                tm_splv: tm_splv { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(A)>, <&kp V>; };
+                tm_zoom: tm_zoom { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(A)>, <&kp Z>; };
+                tm_kill: tm_kill { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(A)>, <&kp X>; };
+                tm_renm: tm_renm { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(A)>, <&kp COMMA>; };
+                tm_det: tm_det { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(A)>, <&kp D>; };
+                tm_rlft: tm_rlft { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(A)>, <&kp LS(H)>; };
+                tm_rdwn: tm_rdwn { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(A)>, <&kp LS(J)>; };
+                tm_rup: tm_rup { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(A)>, <&kp LS(K)>; };
+                tm_rrgt: tm_rrgt { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LC(A)>, <&kp LS(L)>; };
         };
 
         keymap {
